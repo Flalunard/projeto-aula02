@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Calcular Salário</title>
+</head>
+<body>
+  
+    <main>
+        <h1>Calcular Salário</h1>
+        <div> <p>Nome:</p>
+            <p><input id="nome" type="text"></p>
+            <p>Salário Bruto: <br> <br> <input id="sal" type="number"></p>
+            <button type="button" onclick="calcularSalLiqui()">Calcular Salário</button>
+            <p id="resultadoDoSal"></p><br>
+            <a class="sair" href="index1.html">◀Ir para o menu</a>
+        </div>
+    </main>
+
+    <script>
+        function calcularSalLiqui() {
+            var nome = document.getElementById('nome').value;
+            var sal = parseFloat(document.getElementById('sal').value);
+    
+            if (nome === "" || isNaN(sal)) {
+                document.getElementById('resultadoDoSal').innerHTML = "Por favor, preencha todos os campos.";
+                return;
+            }
+
+            var desconto = 0;
+
+            // Verificar se o salário é maior ou igual a 2000
+            if (sal >= 2000) {
+                desconto = sal * 0.30;  // 30% de desconto
+            } else {
+                desconto = sal * 0.40;  // 4% de desconto
+            }
+
+            var salarioLiquido = sal - desconto;
+
+            document.getElementById('resultadoDoSal').innerHTML = nome + ", seu salário líquido é: R$" + salarioLiquido.toFixed(2);
+        }
+    </script>
+</body>
+</html>

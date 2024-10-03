@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Calcular Salário</title>
+</head>
+<body>
+   
+    <main>
+        <h1>Calcular Salário 02</h1>
+        <div> 
+            <p>Nome:</p>
+            <p><input id="nome" type="text"></p>
+            <p>Salário Bruto: <br> <br> <input id="sal" type="number"></p>
+            <p>Outros Descontos: <br> <br><input id="descontos" type="number"></p>
+            <button type="button" onclick="calcularSalLiqui()">Calcular Salário</button>
+            <p id="resultadoDoSal"></p> <br>
+            <a class="sair" href="index1.html">◀Ir para o menu</a>
+        </div>
+    </main>
+    <script>
+        document.getElementById('descontos').addEventListener('keydown', function(event) {
+            if (event.key === "Enter") {
+                calcularSalLiqui();
+            }
+        });
+
+        function calcularSalLiqui() {
+            var nome = document.getElementById('nome').value;
+            var sal = parseFloat(document.getElementById('sal').value);
+            var descontos = parseFloat(document.getElementById('descontos').value);
+
+            if (nome === "" || isNaN(sal) || isNaN(descontos)) {
+                document.getElementById('resultadoDoSal').innerHTML = "Por favor, preencha todos os campos.";
+                return;
+            }
+
+            // Calculando o desconto de 10% no salário bruto
+            var desconto10 = sal * 0.10;  // 10% de desconto
+            var salarioLiquido = sal - desconto10 - descontos;
+
+            document.getElementById('resultadoDoSal').innerHTML = nome + ", seu salário líquido é: R$" + salarioLiquido.toFixed(2);
+        }
+    </script>
+</body>
+</html>

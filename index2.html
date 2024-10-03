@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Calcular Salário</title>
+</head>
+<body>
+   
+    <main>
+        <h1>Calcular Salário</h1>
+        <div> 
+            <p>Nome:</p>
+            <p><input id="nome" type="text"></p>
+            <p>Sal.Bruto: <input id="sal" type="number"></p>
+            <p>Descontos: <input id="descontos" type="number"></p>
+            <p>Quant.Filhos: <input id="filhos" type="number"></p>
+            <button type="button" onclick="calcularSDQ()">Calcular Salário</button>
+            <p id="resultadoDoSal"></p> <br>
+            <a class="sair" href="index1.html">◀Ir para o menu</a>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('filhos').addEventListener('keydown', function(event) {
+            if (event.key === "Enter") {
+                calcularSDQ();
+            }
+        });
+
+        function calcularSDQ() {
+            var nome = document.getElementById('nome').value;
+            var sal = parseFloat(document.getElementById('sal').value);
+            var descontos = parseFloat(document.getElementById('descontos').value);
+            var filhos = parseInt(document.getElementById('filhos').value);
+
+            if (nome == "" || isNaN(sal) || isNaN(descontos) || isNaN(filhos)) {
+                document.getElementById('resultadoDoSal').innerHTML = "Por favor, preencha todos os campos.";
+                return;
+            }
+
+            // Considerando um adicional de R$50,00 por filho no salário
+            var adicionalPorFilho = 100;
+            var salarioLiquido = sal - descontos + (filhos * adicionalPorFilho);
+
+            document.getElementById('resultadoDoSal').innerHTML = nome + ", seu salário líquido é: R$" + salarioLiquido.toFixed(2);
+        }
+    </script>
+</body>
+</html>
