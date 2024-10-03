@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    
+    <title>Document</title>
+</head>
+<body>
+   
+   <main >
+    <h1>Acesso</h1>
+    <form onsubmit="return verificarSenha()"> <div>
+        <input type="text" id="name"  name="name" required
+        placeholder="Digite seu nome ">
+        <label for="name"></label>
+        </div><br>
+        <div>
+        <input type="password" id="password" name="password" required placeholder="password" >
+        <label for="password" >
+        <br><br>
+        
+        <button type="submit" accesskey="index1">Enviar</button> 
+    </form>
+    <br>
+   
+    </main>
+    <script>
+        // Captura o evento keydown para o campo de senha
+        document.getElementById("password").addEventListener("keydown", function(event) {
+            if (event.key == "Enter") { // Verifica se a tecla pressionada é o Enter
+                verificarSenha(); // Chama a função para verificar a senha
+                event.preventDefault(); // Impede o envio do formulário com Enter
+            }
+        });
+    
+        function verificarSenha() {
+            var senhaCorreta = "12345";
+            var senhaDigitada = document.getElementById("password").value;
+            
+            // Verifica se a senha está correta
+        if (senhaDigitada == senhaCorreta) {
+            alert('Acesso permitido');
+            window.location.href = "index1.html"; // Redireciona para outra página
+            return false; // Impede o envio do formulário
+        } else {
+            alert('Acesso negado');
+            return false; // Impede o envio do formulário
+        }
+    }
+    </script>
+</body>
+</html>
+
